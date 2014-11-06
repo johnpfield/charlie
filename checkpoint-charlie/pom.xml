@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>checkpoint-charlie</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>io.pivotal</groupId>
+        <artifactId>charlie-root</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+	<packaging>jar</packaging>
+	<name>Checkpoint Charlie</name>
+	<description>An Aspect Oriented approach to managing batch job rollback events.</description>
+	<build>
+		<plugins>
+<!-- 			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+ -->			
+ 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>aspectj-maven-plugin</artifactId>
+				<version>1.4</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<complianceLevel>1.6</complianceLevel>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>       <!-- use this goal to weave all your main classes -->
+							<goal>test-compile</goal>  <!-- use this goal to weave all your test classes -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.pivotal</groupId>
+			<artifactId>charlie-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- This is the (re-distributable) VMware Web Services vim25.jar file, installed as an artifact in my local maven repository --> 
+		<dependency>
+			<groupId>com.vmware</groupId>
+			<artifactId>vim25-vijava</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+	</dependencies>
+</project>

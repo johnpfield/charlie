@@ -1,0 +1,7 @@
+<aspectj>
+	<aspects>
+		<aspect name="io.pivotal.aspects.checkpoint.PivotalBatchAspect" />
+	</aspects>
+	<!-- weaver options="-debug -showWeaveInfo"  -->
+	<weaver options="-verbose -showWeaveInfo" />
+</aspectj>
